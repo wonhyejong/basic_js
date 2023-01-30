@@ -16,6 +16,12 @@
     </div>
    <script>
         const box=document.querySelector('.box');
+        const mkElement = () =>{
+            let mkDiv = document.createElement('div');
+            mkDiv.setAttribute('class','one');
+            box.append(mkDiv);
+        }
+   
         const fnc = (n) => {
             return new Promise((resolve,reject)=>{
                 setTimeout(() => { 
@@ -47,13 +53,7 @@
             console.error(e);
         })
 
-        const mkElement = () =>{
-            let mkDiv = document.createElement('div');
-            mkDiv.setAttribute('class','one');
-            box.append(mkDiv);
-
-        }
-   
+    
        
 
      /*    const fnc = () => { 

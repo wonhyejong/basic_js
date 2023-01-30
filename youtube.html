@@ -16,6 +16,10 @@
         .video-item .video-txt {word-wrap: break-word;}
         .video-txt h2{font-size: 14px;}
         .video-txt h3{font-size: 12px;}
+        .search-field{display: flex;justify-content: center;}
+        .search-box{display: flex;padding: 16px 0;}
+        #search{width: 600px;height: 30px;padding: 0 8px;}
+        #searchBtn{width: 100px;background-color: #000;color:#fff;height: 30px;}
     </style>
 </head>
 <body>
@@ -74,11 +78,15 @@
             </div>`
         }).join("")
 
-        videoListBox.innerHTML =  videoResult; gi
+        videoListBox.innerHTML =  videoResult
     }
     getVideoList();
     searchBtn.addEventListener('click',getSearchVideo)
-
+    searchInput.addEventListener('keydown',(e)=>{
+        if(e.keyCode === 13 ){
+            getSearchVideo();
+        }
+    })
  </script>   
 </body>
 </html>

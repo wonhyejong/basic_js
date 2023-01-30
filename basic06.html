@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .box{border: 5px solid #000;min-width: 700px}
+       .one{width: 600px;height: 100px;border:1px solid red;margin: 10px;} 
+    </style>
+</head>
+<body>
+    <div class='box'>
+        
+    </div>
+   <script>
+        const box=document.querySelector('.box');
+        const fnc = (n) => {
+            return new Promise((resolve,reject)=>{
+                setTimeout(() => { 
+                    const value = n + 1;
+                    if(value === 4 ) {
+                        const error = new Error();
+                        error.name = "value값이 3 이상입니다."
+                        reject(error)
+                        return
+                    }
+                    console.log(value)
+                    resolve(value)
+                }, 5000);
+               
+            })
+        }
+
+        fnc(0)
+        .then(n=>{
+            return fnc(n)
+        }) 
+        .then(n=>{
+            return fnc(n)
+        }) 
+        .then(n=>{
+            return fnc(n)
+        })
+        .catch((e)=>{
+            console.error(e);
+        })
+
+        const mkElement = () =>{
+            let mkDiv = document.createElement('div');
+            mkDiv.setAttribute('class','one');
+            box.append(mkDiv);
+
+        }
+   
+       
+
+     /*    const fnc = () => { 
+            return new Promise((resolve,reject) => {
+               // resolve();
+               reject();
+            }) 
+        }
+
+       fnc()
+       .then(()=>{console.log(1)})
+       .then(()=>{console.log(2)})
+       .then(()=>{console.log(3)})
+       .catch(()=>{
+            console.log("너 틀려서!")
+        }) */
+   </script>
+</body>
+</html>

@@ -5,6 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box}
+        ul,li{list-style: none;}
+        a{text-decoration: none;color:inherit}
+        .container{width: 1200px;margin: auto;}
+        .video-list{display: flex;width: 100%;flex-wrap: wrap;}
+        .video-item{width: calc(20% - 10px);border:1px solid #ccc;margin: 4px;padding: 12px;}
+        .video-item .thum-img img{width: 100%;}
+        .video-item .video-txt {word-wrap: break-word;}
+        .video-txt h2{font-size: 14px;}
+        .video-txt h3{font-size: 12px;}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -27,13 +39,36 @@
         </section>
     </div>
  <script>
-
-    const getVideoList = () => { 
-        let url ="https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&regionCode=kr&key=AIzaSyAAdomovJFlj4A8ZS0oL0nxdlHZj9CVOlg"
+    const API_KEY=`AIzaSyAAdomovJFlj4A8ZS0oL0nxdlHZj9CVOlg`;
+    const videoListBox  = document.querySelector('.video-list')
+    const searchInput  = document.querySelector('#search')
+    const searchBtn  = document.querySelector('#searchBtn')
+    let videoDataBox=[];
+    const getVideoList = async() => { 
+        let url =`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&regionCode=kr&key=${API_KEY}`
+        let response = await fetch(url);
+        let videoData = await response.json(); 
+        videoDataBox = videoData.items;
+        render();
     }
     
-   
+    const render = () => { 
+        let videoResult = '';
+        videoResult = videoDataBox.map(item=>{
+            return `<div class="video-item">
+                <div class="thum-img">
+                    <img src=${item.snippet.thumbnails.medium.url} alt="">
+                </div>
+                <div class="video-txt">
+                    <h2>${item.snippet.title}</h2>
+                    <p>${item.snippet.channelTitle}</p>
+                </div>
+            </div>`
+        })
 
+        videoListBox.innerHTML =  videoResult; 
+    }
+    getVideoList();
  </script>   
 </body>
 </html>

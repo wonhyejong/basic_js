@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* const num = [2001,2002,2003,2004,2005]
+        num.forEach((item,index,arr)=>{
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+        }) */
+
+        const data = [
+            {id:1,name:'lee'},
+            {id:2,name:'kim'},
+            {id:3,name:'park'}
+        ] 
+
+        data.map((item)=>console.log(item))
+        data.forEach((item)=>console.log(item)) 
+
+       const person = [
+        {
+            name:"kim",
+            point:50,
+            age:20
+        },
+        {
+            name:"lee",
+            point:92,
+            age:22
+        },
+        {
+            name:"park",
+            point:76,
+            age:21
+        },
+        {
+            name:"han",
+            point:81,
+            age:32
+        },
+       ]
+       const pass = person.filter((item)=>{
+        return item.point > 80 ;
+       })
+        
+       console.log(pass)
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function numAdd(a,b,c){
+            console.log(arguments)
+            console.log(arguments.length)
+            console.log(arguments[0])
+            console.log(arguments[1])
+            console.log(arguments[2])
+            return a+b+c ; 
+        }
+        console.log(numAdd(10,20,30))
+
+
+        function numAdd2(a=0,b=0,c=0){
+            console.log(arguments)
+            return a+b+c ; 
+        }
+        console.log(numAdd2(10))
+        //rest 파라미터 
+        function numAdd3(a,b,...num){
+            console.log(arguments)
+            console.log(num[0])
+            console.log(num[1])
+            console.log(num[2])
+            return ; 
+        }
+        console.log(numAdd3(100,200,300,400,500,600,700))
+    //for 문을 이용해서 전달받은 매개변수의 총합 구하기 
+        function numSum(...num){
+            let sum = 0 ;
+            for(let i=0;i<num.length;i++){
+                sum+=num[i]
+            }
+            return sum;
+            
+        }
+
+        console.log(numSum(10,20,30,40,50))
+    </script>
+
+
+</body>
+</html>

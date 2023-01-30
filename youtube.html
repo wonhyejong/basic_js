@@ -44,6 +44,14 @@
     const searchInput  = document.querySelector('#search')
     const searchBtn  = document.querySelector('#searchBtn')
     let videoDataBox=[];
+    const getSearchVideo =async() =>{
+        let keyword = searchInput.value;
+        let url =`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${keyword}&regionCode=kr&type=video&key=${API_KEY}`
+        let response = await fetch(url) ;
+        let videoData = await response.json() ;
+        videoDataBox=videoData.items;
+        render()
+    }
     const getVideoList = async() => { 
         let url =`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&regionCode=kr&key=${API_KEY}`
         let response = await fetch(url);
@@ -64,11 +72,13 @@
                     <p>${item.snippet.channelTitle}</p>
                 </div>
             </div>`
-        })
+        }).join("")
 
-        videoListBox.innerHTML =  videoResult; 
+        videoListBox.innerHTML =  videoResult; gi
     }
     getVideoList();
+    searchBtn.addEventListener('click',getSearchVideo)
+
  </script>   
 </body>
 </html>
